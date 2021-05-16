@@ -1,5 +1,3 @@
-// const kEquation()
-
 interface IKineOptions {
   xMax: number;
   yMax: number;
@@ -15,7 +13,6 @@ class Kine {
   initialXVel: number;
   initialYVel: number;
   ticksElapsed: number;
-  currentPosition: number[];
 
   constructor({ xMax, yMax, acceleration, initialVelocity, angle }: IKineOptions) {
     this.board = Array(yMax).fill(Array(xMax).fill(' '));
@@ -23,7 +20,6 @@ class Kine {
     this.initialYVel = initialVelocity * Math.sin(angle * (Math.PI / 180));
     this.initialXVel = initialVelocity * Math.cos(angle * (Math.PI / 180));
     this.ticksElapsed = 0;
-    this.currentPosition = [0, yMax - 1];
     this.yMax = yMax;
   }
 
@@ -42,6 +38,7 @@ class Kine {
     const board = JSON.parse(JSON.stringify(this.board));
     const pos = this.calculatePosition(this.ticksElapsed);
     let t = Number(this.ticksElapsed);
+    // frames
     while (t > 0) {
       const pos = this.calculatePosition(t);
       board[Math.round(pos[1])][Math.round(pos[0])] = '.';
